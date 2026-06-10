@@ -15,7 +15,7 @@ services:
       retries: 5
 
   backend:
-    image: ghcr.io/stevanaleksandrov/conduit-backend:${IMAGE_TAG}
+    image: ghcr.io/${GHCR_NAMESPACE}/conduit-backend:${IMAGE_TAG}
     env_file:
       - ./.env
     depends_on:
@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ghcr.io/stevanaleksandrov/conduit-frontend:${IMAGE_TAG}
+    image: ghcr.io/${GHCR_NAMESPACE}/conduit-frontend:${IMAGE_TAG}
     depends_on:
       - backend
     ports:
