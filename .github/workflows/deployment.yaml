@@ -126,8 +126,13 @@ jobs:
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io --username "${{ secrets.GHCR_USER }}" --password-stdin
 
             docker compose pull
+
+            if [ -n "$(docker compose ps -q frontend backend)" ]; then
+            docker compose stop frontend backend
+            fi
+
             docker compose up -d --remove-orphans
-            docker compose ps
+            docker compose ps 
 
             FRONTEND_PORT="$(grep -E '^FRONTEND_PORT=' .env | cut -d '=' -f2-)"
             FRONTEND_PORT="${FRONTEND_PORT:-8282}"
