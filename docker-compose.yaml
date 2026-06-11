@@ -34,8 +34,6 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    ports:
-      - "${BACKEND_PORT:-8000}:8000"
     networks:
       - conduit_network
     restart: unless-stopped
