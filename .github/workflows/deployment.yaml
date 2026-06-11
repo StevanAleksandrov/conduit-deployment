@@ -130,9 +130,8 @@ jobs:
             docker compose up -d --remove-orphans
             docker compose ps
 
-            set -a
-            . ./.env
-            set +a
+            FRONTEND_PORT="$(grep -E '^FRONTEND_PORT=' .env | cut -d '=' -f2-)"
+            FRONTEND_PORT="${FRONTEND_PORT:-8282}"
 
             for i in 1 2 3 4 5 6 7 8 9 10; do
               if curl -fsS "http://localhost:${FRONTEND_PORT}" > /dev/null; then
