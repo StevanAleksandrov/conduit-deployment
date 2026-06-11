@@ -76,7 +76,7 @@ jobs:
 
       - name: Create deployment .env file
         run: |
-          cat > .env <<EOF
+          cat > .env <<'EOF'
           DJANGO_DEBUG=False
           DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
           DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
